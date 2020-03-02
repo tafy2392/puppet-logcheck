@@ -1,0 +1,18 @@
+{
+  "name": "munya-logcheck",
+  "version": "0.1.0",
+  "author": "Munyaradzi Tafirenyika",
+  "summary": "For Logcheck Installation, Configuration and Rules",
+  "license": "Free",
+  "source": "https://github.com/tafy2392/puppet-logcheck",
+  "project_page": "https://github.com/tafy2392/puppet-logcheck",
+  "issues_url": "https://github.com/tafy2392/puppet-logcheck/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
+  ],
+  "data_provider": null
+}
+
