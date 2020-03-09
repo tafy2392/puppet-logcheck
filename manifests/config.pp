@@ -1,10 +1,11 @@
+
 class logcheck::config {
   file {  '/etc/logcheck/logcheck.conf':
     ensure  => present,
     content => template('logcheck/logcheckconf.erb'),
     owner   => root,
-    group   => root,
-    mode    => '0600',
+    group   => logcheck,
+    mode    => '0640',
    }
 
 # Files to scan  for patterns
@@ -12,8 +13,8 @@ class logcheck::config {
     ensure  => present,
     content => template('logcheck/logfiles.erb'),
     owner   => root,
-    group   => root,
-    mode    => '0600',
+    group   => logcheck,
+    mode    => '0640',
    }
 
   #Security Alert Layers Directories for Logcheck
@@ -21,15 +22,10 @@ class logcheck::config {
               '/etc/logcheck/violations.ignore.d/', '/etc/logcheck/violations.ignore.d.server/', ]
    file { $mysecdir:
      ensure => 'directory',
-     mode   =>  '0644',
+     owner => root,
+     group => logcheck,
+     mode   =>  '0760',
   }
 
-  file {  '/etc/logcheck/ignore.d.server':
-    ensure  => present,
-    content => template('logcheck/ignore.server.erb'),
-    owner   => root,
-    group   => root,
-    mode    => '0600',
-  }
 
 }

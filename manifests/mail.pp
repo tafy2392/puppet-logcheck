@@ -1,10 +1,10 @@
-class logcheck::mail {
+class logcheck::mail(String $password, String $email,) {
  
   package{'msmtp':
     ensure => installed, 
   }
   
-  package {'mutt':
+  package {'msmtp-mta':
     ensure => installed,
  }
 
@@ -13,7 +13,7 @@ class logcheck::mail {
     content => template('logcheck/forward.erb'),
     owner   => root,
     group   => root,
-    mode    => '0600',
+    mode    => '0644',
   }
 
   
@@ -22,14 +22,23 @@ class logcheck::mail {
     content => template('logcheck/msmtprc.erb'),
     owner   => root,
     group   => root,
-    mode    => '0600',
+    mode    => '0644',
   }
 
-  file {'/usr/bin/msmtp':
+  file {'/usr/local/bin/sendmail':
     ensure => link,
     force => true,
-    target => '/usr/sbin/sendmail',
+    target => '/usr/bin/msmtp',
+    mode => '0755'
   }
+
+  file {'/usr/local/sbin/sendmail':
+    ensure => link,
+    force => true,
+    target => '/usr/bin/msmtp',
+    mode => '0755'
+  }
+
   
  
 }

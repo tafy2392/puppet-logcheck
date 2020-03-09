@@ -4,14 +4,8 @@ class logcheck::summary{
     ensure => present,
   }
 
-  file {'/etc/logcheck/logcheck.conf':
-    ensure => present,
-  }
-
-  -> file_line { 'syssum_line':
-        line => 'SYSLOGSUMMARY=1',
-        path => '/etc/logcheck/logcheck.conf',
-  }
-  
-
+exec {'exec_name':
+    command => 'bash -c "echo SYSLOGSUMMARY=1" >> /etc/logcheck/logcheck.conf',
+    path    => '/bin',
+     }
 }
