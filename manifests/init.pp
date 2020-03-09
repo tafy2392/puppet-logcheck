@@ -1,8 +1,8 @@
 
 class logcheck (
-       Boolean $log_summary = true,
-       String $email = 'tafymunya@gmail.com',
-       String $password = 'tafy1992', )
+       Boolean $log_summary = false ,
+       String $email = 'praekeltlogcheck@gmail.com',
+       String $password = 'Praekelt1234', )
        {
 
   class { 'logcheck::install': } ->
