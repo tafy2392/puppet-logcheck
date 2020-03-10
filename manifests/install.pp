@@ -1,4 +1,4 @@
-class logcheck::install{
+class prk_logcheck::install{
   package{'logcheck':
     ensure => installed,
   }

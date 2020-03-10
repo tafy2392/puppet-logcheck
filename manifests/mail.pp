@@ -1,14 +1,14 @@
-class logcheck::mail(String $password, String $email,) {
- 
+class prk_logcheck::mail(String $password, String $email,) {
+
   package{'msmtp':
-    ensure => installed, 
+    ensure => installed,
   }
-  
+
   package {'msmtp-mta':
     ensure => installed,
- }
+  }
 
- file {'/root/.forward':
+  file {'/root/.forward':
     ensure  => present,
     content => template('logcheck/forward.erb'),
     owner   => root,
@@ -16,7 +16,7 @@ class logcheck::mail(String $password, String $email,) {
     mode    => '0644',
   }
 
-  
+
   file {'/etc/msmtprc':
     ensure  => present,
     content => template('logcheck/msmtprc.erb'),
@@ -27,18 +27,18 @@ class logcheck::mail(String $password, String $email,) {
 
   file {'/usr/local/bin/sendmail':
     ensure => link,
-    force => true,
+    force  => true,
     target => '/usr/bin/msmtp',
-    mode => '0755'
+    mode   => '0755'
   }
 
   file {'/usr/local/sbin/sendmail':
     ensure => link,
-    force => true,
+    force  => true,
     target => '/usr/bin/msmtp',
-    mode => '0755'
+    mode   => '0755'
   }
 
-  
- 
+
+
 }
