@@ -1,11 +1,11 @@
 
-class logcheck::config {
+class logcheck::config(String $email,) {
   file {  '/etc/logcheck/logcheck.conf':
     ensure  => present,
     content => template('logcheck/logcheckconf.erb'),
     owner   => root,
     group   => logcheck,
-    mode    => '0640',
+    mode    => '0666',
    }
 
 # Files to scan  for patterns
@@ -14,7 +14,7 @@ class logcheck::config {
     content => template('logcheck/logfiles.erb'),
     owner   => root,
     group   => logcheck,
-    mode    => '0640',
+    mode    => '0666',
    }
 
   #Security Alert Layers Directories for Logcheck
